@@ -94,3 +94,6 @@ catch_discover_tests( ${target_name}
 
 # Add GPIO helpers test
 add_unit_test(hal/gpio_helpers_test.cpp)
+
+# Add cloud connection integration test
+add_integration_test(cloud_connection_test.cpp)
