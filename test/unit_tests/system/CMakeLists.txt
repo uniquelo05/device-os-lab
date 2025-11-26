@@ -91,3 +91,6 @@ target_include_directories( ${target_name}
 catch_discover_tests( ${target_name}
   TEST_PREFIX ${target_name}_
 )
+
+# Add GPIO helpers test
+add_unit_test(hal/gpio_helpers_test.cpp)
