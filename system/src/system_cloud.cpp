@@ -47,6 +47,7 @@
 #include "coap_defs.h"
 #include "deviceid_hal.h"
 #include "system_mode.h"
+#include "hal_network.h"
 
 #if PLATFORM_THREADING
 #include "spark_wiring_timer.h"
@@ -348,4 +349,26 @@ int spark_set_random_seed_from_cloud_handler(void (*handler)(unsigned int), void
 {
     random_seed_from_cloud_handler = handler;
     return 0;
+}
+
+static const int MAX_RETRIES = 5;
+static const int RETRY_INTERVAL_MS = 5000; // 5 seconds
+
+void cloud_reconnection_init() {
+    // Initialize any state or variables needed for reconnection retry logic
+    Log.info("Cloud reconnection retry logic initialized.");
+}
+
+bool cloud_reconnect_with_retry() {
+    for (int attempt = 1; attempt <= MAX_RETRIES; attempt++) {
+        Log.info("Attempting to reconnect to the cloud (Attempt %d/%d)...", attempt, MAX_RETRIES);
+        if (hal_network_connect() == 0) { // Assume 0 means success
+            Log.info("Successfully reconnected to the cloud.");
+            return true;
+        }
+        Log.warn("Reconnection attempt %d failed. Retrying in %d ms...", attempt, RETRY_INTERVAL_MS);
+        system_task_delay(RETRY_INTERVAL_MS);
+    }
+    Log.error("Failed to reconnect to the cloud after %d attempts.", MAX_RETRIES);
+    return false;
 }

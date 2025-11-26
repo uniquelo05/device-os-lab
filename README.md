@@ -227,3 +227,30 @@ void loop() {
 - Calibration may take a few seconds to complete.
 - Ensure stable power supply during calibration.
 - Refer to the detailed guide in `docs/adc_calibration.md` for more information.
+
+## Cloud Reconnection Retry Logic
+
+This feature introduces retry logic for reconnecting to the cloud in case of disconnection. It attempts to reconnect multiple times with a fixed interval between attempts.
+
+### Configuration
+- **Maximum Retries**: 5
+- **Retry Interval**: 5000 ms (5 seconds)
+
+### Usage Example
+
+```cpp
+#include "system_cloud.h"
+
+void setup() {
+    cloud_reconnection_init();
+    if (cloud_reconnect_with_retry()) {
+        Serial.println("Reconnected to the cloud successfully.");
+    } else {
+        Serial.println("Failed to reconnect to the cloud.");
+    }
+}
+
+void loop() {
+    // Your code here
+}
+```
