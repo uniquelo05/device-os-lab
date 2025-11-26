@@ -202,5 +202,17 @@ int getBatteryLevel() {
     return -1; // Return -1 if not running on battery
 }
 
+// Function to log power consumption data
+void logPowerConsumption() {
+    int batteryLevel = getBatteryLevel();
+    if (batteryLevel != -1) {
+        Log.info("Battery Level: %d%%", batteryLevel);
+    } else {
+        Log.warn("Battery level information is not available.");
+    }
+
+    // Additional power consumption metrics can be added here
+}
+
 } // namespace particle
 

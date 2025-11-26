@@ -1215,4 +1215,12 @@ bool PMIC::unlock() {
     return pmicWireInstance()->unlock();
 }
 
+// Function to retrieve power consumption metrics
+float PMIC::getPowerConsumption() {
+    // Placeholder implementation: Replace with actual hardware interaction
+    float powerConsumption = 0.0; // Example value in milliwatts
+    Log.info("Power Consumption: %.2f mW", powerConsumption);
+    return powerConsumption;
+}
+
 #endif /* HAL_PLATFORM_PMIC_BQ24195 */
