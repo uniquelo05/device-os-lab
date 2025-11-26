@@ -24,7 +24,26 @@ Device OS is the operating system for Particle devices. It provides a robust and
 
 ## Getting Started
 
-To get started building firmware locally, see [Getting Started](docs/gettingstarted.md).
+To get started with Device OS, follow the instructions below:
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/uniquelo05/device-os-lab.git
+   ```
+2. Build the project:
+   ```bash
+   make all
+   ```
+3. Flash the firmware to your device:
+   ```bash
+   make flash
+   ```
+
+For more details, refer to the [documentation](docs/gettingstarted.md).
+
+## Code Examples
+
+Check out the [Code Examples](docs/code_examples.md) for common use cases and best practices.
 
 ## Troubleshooting
 
