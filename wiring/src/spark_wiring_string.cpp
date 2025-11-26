@@ -467,6 +467,18 @@ unsigned char String::concat(double num)
     return concat(buf, strlen(buf));
 }
 
+// Optimized concatenation
+String& String::concat(const char* str) {
+    if (str) {
+        size_t len = strlen(str);
+        if (len > 0) {
+            reserve(length() + len);
+            strcat(buffer, str);
+        }
+    }
+    return *this;
+}
+
 /*********************************************/
 /*  Concatenate                              */
 /*********************************************/
@@ -813,6 +825,23 @@ int String::lastIndexOf(const String &s2, unsigned int fromIndex) const
 String String::substring( unsigned int left ) const
 {
     return substring(left, len);
+}
+
+// Optimized substring
+String String::substring(size_t start, size_t end) const {
+    if (start >= length()) {
+        return String();
+    }
+    if (end > length()) {
+        end = length();
+    }
+    size_t newLen = end - start;
+    char* newBuffer = new char[newLen + 1];
+    strncpy(newBuffer, buffer + start, newLen);
+    newBuffer[newLen] = '\0';
+    String result(newBuffer);
+    delete[] newBuffer;
+    return result;
 }
 
 String String::substring(unsigned int left, unsigned int right) const

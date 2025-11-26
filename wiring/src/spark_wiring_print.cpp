@@ -171,6 +171,10 @@ size_t Print::println(const __FlashStringHelper* str)
   return println(reinterpret_cast<const char*>(str));
 }
 
+size_t Print::print(const String& str) {
+    return write(str.c_str(), str.length());
+}
+
 // Private Methods /////////////////////////////////////////////////////////////
 
 size_t Print::printNumber(unsigned long n, uint8_t base) {

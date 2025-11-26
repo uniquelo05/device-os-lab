@@ -163,3 +163,32 @@ void loop() {
     // Your code here
 }
 ```
+
+## Performance Improvements
+
+### Optimized String Operations
+- Improved `String::concat` for efficient concatenation.
+- Added optimized `String::substring` for extracting substrings.
+- Enhanced `Print::print` for better handling of `String` objects.
+
+### Usage Examples
+
+#### String Concatenation
+```cpp
+String str("Hello");
+str.concat(" World");
+Serial.println(str); // Output: Hello World
+```
+
+#### String Substring
+```cpp
+String str("Hello World");
+String sub = str.substring(6, 11);
+Serial.println(sub); // Output: World
+```
+
+#### Printing Strings
+```cpp
+String str("Hello World");
+Serial.print(str); // Output: Hello World
+```
