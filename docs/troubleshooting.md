@@ -1,0 +1,63 @@
+# Troubleshooting Guide
+
+This guide provides solutions to common issues encountered while working with Device OS.
+
+## Common Issues
+
+### 1. Build Failures
+**Symptoms:**
+- Compilation errors during the build process.
+- Missing dependencies or tools.
+
+**Solutions:**
+- Ensure all required tools are installed (e.g., GCC, Make).
+- Run the following command to install dependencies:
+  ```bash
+  ./ci/install_boost.sh
+  ```
+- Check the `build/` directory for detailed logs.
+
+### 2. Device Not Connecting to Network
+**Symptoms:**
+- Device fails to connect to Wi-Fi or cellular network.
+- Network state stuck in `DISCONNECTED`.
+
+**Solutions:**
+- Verify network credentials are correct.
+- Check if the network is available and has sufficient signal strength.
+- Use the following command to reset network settings:
+  ```bash
+  particle device wifi
+  ```
+
+### 3. LED Blink Patterns Not Working
+**Symptoms:**
+- Custom LED patterns are not applied.
+- LED remains off or blinks unexpectedly.
+
+**Solutions:**
+- Ensure the pattern string is valid (e.g., `"1010"` for on/off sequence).
+- Check the `spark_wiring_led.cpp` file for errors.
+
+### 4. Power Consumption Logs Missing
+**Symptoms:**
+- No logs related to power consumption appear.
+- Battery level always shows `-1`.
+
+**Solutions:**
+- Verify the device is running on battery power.
+- Check the `spark_wiring_power.cpp` file for issues.
+
+## Debugging Tips
+- Use the `Log.info()` function to add debug logs in the code.
+- Check the `logs/` directory for runtime logs.
+- Use the Particle CLI for device diagnostics:
+  ```bash
+  particle device doctor
+  ```
+
+## Contact Support
+If the issue persists, please contact the support team with the following information:
+- Device model and OS version.
+- Steps to reproduce the issue.
+- Relevant logs or error messages.
