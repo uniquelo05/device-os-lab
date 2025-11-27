@@ -346,3 +346,33 @@ void loop() {
     // Your code here
 }
 ```
+
+## GPIO Debounce Example
+
+To debounce a GPIO input, you can use the following example:
+
+```cpp
+#include "application.h"
+
+#define DEBOUNCE_TIME 50 // 50 milliseconds debounce time
+
+void setup() {
+    pinMode(D7, INPUT_PULLUP);
+}
+
+void loop() {
+    static unsigned long lastPress = 0;
+    if (digitalRead(D7) == LOW) {
+        unsigned long now = millis();
+        if (now - lastPress > DEBOUNCE_TIME) {
+            lastPress = now;
+            // Toggle LED or perform action
+            digitalWrite(D7, !digitalRead(D7));
+        }
+    }
+}
+```
+
+This example demonstrates how to debounce a button connected to pin D7. The LED connected to the same pin will toggle its state on each button press, with a debounce time of 50 milliseconds to prevent false triggers.
+
+Refer to `docs/code_examples.md` for more details and common patterns for GPIO debounce handling.

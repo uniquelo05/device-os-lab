@@ -10,6 +10,7 @@ This document provides code examples for common use cases when working with Devi
 5. [Timer-based Operations](#5-timer-based-operations)
 6. [Error Handling Best Practices](#6-error-handling-best-practices)
 7. [Monitoring Memory Usage](#7-monitoring-memory-usage)
+8. [GPIO Debounce Example](#gpio-debounce-example)
 
 ## 1. Logging Power Consumption
 
@@ -135,5 +136,44 @@ void loop() {
 ```
 
 This example demonstrates how to monitor memory usage using the `System.freeMemory()` API. It is useful for identifying memory leaks and optimizing memory usage in your application.
+
+## GPIO Debounce Example
+
+The following example demonstrates how to implement GPIO debounce logic using the HAL layer:
+
+```cpp
+#include "hal/gpio.h"
+#include <chrono>
+#include <thread>
+
+// Debounce logic
+void debounce_gpio(int pin) {
+    const int debounceDelay = 50; // 50 milliseconds
+    bool lastState = HAL_GPIO_Read(pin);
+    while (true) {
+        bool currentState = HAL_GPIO_Read(pin);
+        if (currentState != lastState) {
+            std::this_thread::sleep_for(std::chrono::milliseconds(debounceDelay));
+            if (HAL_GPIO_Read(pin) == currentState) {
+                // Stable state detected
+                LOG(INFO, "GPIO pin %d state changed to %d", pin, currentState);
+            }
+        }
+        lastState = currentState;
+    }
+}
+
+void setup() {
+    int pin = 5; // Example GPIO pin
+    HAL_GPIO_Init(pin, INPUT);
+    std::thread(debounce_gpio, pin).detach();
+}
+
+void loop() {
+    // Main application logic
+}
+```
+
+This example initializes a GPIO pin, applies debounce logic, and logs state changes.
 
 For more examples, refer to the [API documentation](docs/api_reference.md).

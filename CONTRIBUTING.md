@@ -97,4 +97,8 @@ To avoid any issues with subtres, it's simplest to make all changes to the upstr
 PRs from a separate working copy, just as you would with any regular repo. Then pull these changes
 into the subtree in this repo.
 
+### Adding Code Examples
+- When adding a new code example, ensure it is placed in the appropriate section of `docs/code_examples.md`.
+- Verify that the example is functional and adheres to the style guide.
+
 
