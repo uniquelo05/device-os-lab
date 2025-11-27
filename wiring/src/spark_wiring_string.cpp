@@ -227,6 +227,12 @@ void String::invalidate(void)
 
 unsigned char String::reserve(unsigned int size)
 {
+    // Prevent integer overflow in allocation
+    if (size > (UINT_MAX - 1))
+    {
+        return 0;
+    }
+
     if (buffer && capacity_ >= size) {
         return 1;
     }
