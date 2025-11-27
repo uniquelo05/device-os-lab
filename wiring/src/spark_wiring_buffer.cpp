@@ -37,8 +37,16 @@ Buffer Buffer::slice(size_t pos, size_t size) const {
 }
 
 Buffer Buffer::concat(const Buffer& buf) const {
+    // Check for potential overflow
+    size_t newSize = d_.size() + buf.d_.size();
+    if (newSize < d_.size())
+    {
+        return Buffer(); // Overflow detected
+    }
+
     Buffer b;
-    if (!b.resize(d_.size() + buf.d_.size())) {
+    if (!b.resize(newSize))
+    {
         return Buffer();
     }
     std::memcpy(b.d_.data(), d_.data(), d_.size());
