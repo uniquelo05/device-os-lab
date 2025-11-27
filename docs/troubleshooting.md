@@ -85,3 +85,35 @@ If the issue persists, please contact the support team with the following inform
 - Device model and OS version.
 - Steps to reproduce the issue.
 - Relevant logs or error messages.
+
+## Watchdog Timer Usage Guide
+
+The watchdog timer is a critical feature to ensure system reliability by resetting the device in case of a software fault. Below is a guide on how to use the watchdog timer effectively:
+
+### Enabling the Watchdog Timer
+
+1. Initialize the watchdog timer in your setup function:
+
+    ```cpp
+    #include "hal/watchdog.h"
+
+    void setup() {
+        HAL_Watchdog_Init(30000); // Set timeout to 30 seconds
+    }
+    ```
+
+2. Regularly reset the watchdog timer in your main loop to prevent unintended resets:
+
+    ```cpp
+    void loop() {
+        HAL_Watchdog_Refresh();
+        // Your application logic here
+    }
+    ```
+
+### Troubleshooting Common Issues
+
+- **Device Resets Unexpectedly**: Ensure that `HAL_Watchdog_Refresh()` is called frequently enough to prevent the timer from expiring.
+- **Watchdog Timer Not Working**: Verify that the watchdog timer is properly initialized in the `setup` function.
+
+By following these steps, you can ensure that the watchdog timer is used effectively to maintain system stability.

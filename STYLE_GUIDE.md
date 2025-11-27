@@ -77,3 +77,8 @@ protected:
 Code should be written to be legible, comprehensible and testable. Writing unit tests in tandem with writing the product code can help highlight design issues early on, leading to early refactoring and a cleaner design.
 
 The code guidelines [here](http://stroustrup.com/JSF-AV-rules.pdf) offer some good advice and we will in time be writing up which of these rules are applicale or not applicable to this codebase.
+
+### Documentation Guidelines
+- Ensure all troubleshooting guides are clear and concise.
+- Include code examples where applicable.
+- Follow the existing style for headings and formatting.

@@ -101,4 +101,8 @@ into the subtree in this repo.
 - When adding a new code example, ensure it is placed in the appropriate section of `docs/code_examples.md`.
 - Verify that the example is functional and adheres to the style guide.
 
+### Adding Troubleshooting Guides
+- When adding a new troubleshooting guide, ensure it is placed in the appropriate section of `docs/troubleshooting.md`.
+- Verify that the guide is accurate and adheres to the style guide.
+
 

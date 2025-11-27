@@ -376,3 +376,5 @@ void loop() {
 This example demonstrates how to debounce a button connected to pin D7. The LED connected to the same pin will toggle its state on each button press, with a debounce time of 50 milliseconds to prevent false triggers.
 
 Refer to `docs/code_examples.md` for more details and common patterns for GPIO debounce handling.
+
+- Added a watchdog timer usage guide to `docs/troubleshooting.md`.
