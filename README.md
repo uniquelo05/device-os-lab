@@ -347,6 +347,40 @@ void loop() {
 }
 ```
 
+The following example demonstrates how to implement a retry mechanism for cloud reconnection:
+
+```cpp
+#include "cloud.h"
+#include <chrono>
+#include <thread>
+
+void reconnectToCloud() {
+    const int maxRetries = 5;
+    const int retryDelayMs = 2000; // 2 seconds
+
+    for (int attempt = 1; attempt <= maxRetries; ++attempt) {
+        if (Cloud.connect()) {
+            LOG(INFO, "Successfully reconnected to the cloud on attempt %d", attempt);
+            return;
+        } else {
+            LOG(WARN, "Cloud reconnection attempt %d failed. Retrying in %d ms...", attempt, retryDelayMs);
+            std::this_thread::sleep_for(std::chrono::milliseconds(retryDelayMs));
+        }
+    }
+
+    LOG(ERROR, "Failed to reconnect to the cloud after %d attempts", maxRetries);
+}
+
+void loop() {
+    if (!Cloud.isConnected()) {
+        reconnectToCloud();
+    }
+    // Other application logic
+}
+```
+
+This example attempts to reconnect to the cloud up to 5 times, with a 2-second delay between attempts. If all attempts fail, an error is logged.
+
 ## GPIO Debounce Example
 
 To debounce a GPIO input, you can use the following example:
