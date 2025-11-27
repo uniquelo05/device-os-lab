@@ -18,6 +18,7 @@
  */
 
 #include "lightssl_protocol.h"
+#include <mutex>
 
 #if HAL_PLATFORM_CLOUD_TCP
 
@@ -55,31 +56,41 @@ int LightSSLProtocol::command(ProtocolCommands::Enum command, uint32_t value, co
   }
 }
 
+namespace {
+    std::mutex ack_handlers_mutex;
+}
+
 int LightSSLProtocol::wait_confirmable(uint32_t timeout)
 {
-  ProtocolError err = NO_ERROR;
+    ProtocolError err = NO_ERROR;
 
-  if (ack_handlers.size() != 0) {
-    system_tick_t start = millis();
-    LOG(INFO, "Waiting for Confirmed messages to be ACKed.");
+    if (ack_handlers.size() != 0) {
+        system_tick_t start = millis();
+        LOG(INFO, "Waiting for Confirmed messages to be ACKed.");
 
-    while (((ack_handlers.size() != 0) && (millis()-start)<timeout))
-    {
-      CoAPMessageType::Enum message;
-      err = event_loop(message);
-      if (err)
-      {
-        LOG(WARN, "error receiving acknowledgements");
-        break;
-      }
+        while (((ack_handlers.size() != 0) && (millis()-start)<timeout))
+        {
+            CoAPMessageType::Enum message;
+            {
+                std::lock_guard<std::mutex> lock(ack_handlers_mutex);
+                err = event_loop(message);
+            }
+            if (err)
+            {
+                LOG(WARN, "error receiving acknowledgements");
+                break;
+            }
+        }
+        LOG(INFO, "All Confirmed messages sent: %s",
+            (ack_handlers.size() != 0) ? "no" : "yes");
+
+        {
+            std::lock_guard<std::mutex> lock(ack_handlers_mutex);
+            ack_handlers.clear();
+        }
     }
-    LOG(INFO, "All Confirmed messages sent: %s",
-        (ack_handlers.size() != 0) ? "no" : "yes");
 
-    ack_handlers.clear();
-  }
-
-  return (int)err;
+    return (int)err;
 }
 
 
