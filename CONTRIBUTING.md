@@ -9,6 +9,16 @@ Whenever possible, please follow these guidelines for contributions:
 - Wherever possible, provide unit tests for your contributions.
 - If the changes have an impact application developers, then those changes should be described in the documentation. 
 
+## Example Pull Request Process
+
+1. Fork the repository
+2. Create a feature branch: `git checkout -b feature/my-new-feature`
+3. Make your changes following the style guide
+4. Add tests for your changes
+5. Commit your changes: `git commit -m "Add new feature"`
+6. Push to the branch: `git push origin feature/my-new-feature`
+7. Submit a pull request 
+
 
 # Tests and Documentation
 
