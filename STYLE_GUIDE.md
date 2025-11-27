@@ -50,6 +50,26 @@ void calculateSum(int a, int b)
 - private/protected methods appear after public methods
 - use `override` for virtual functions in derived classes
 
+### Example: Class Structure
+
+```cpp
+class DeviceManager
+{
+private:
+    int deviceId;
+    String deviceName;
+
+public:
+    DeviceManager(int id, String name);
+    
+    void initialize();
+    int getDeviceId() const;
+    
+protected:
+    void internalUpdate();
+};
+```
+
 Code should be written to be legible, comprehensible and testable. Writing unit tests in tandem with writing the product code can help highlight design issues early on, leading to early refactoring and a cleaner design.
 
 The code guidelines [here](http://stroustrup.com/JSF-AV-rules.pdf) offer some good advice and we will in time be writing up which of these rules are applicale or not applicable to this codebase.
