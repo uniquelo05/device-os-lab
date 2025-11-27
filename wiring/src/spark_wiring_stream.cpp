@@ -39,6 +39,12 @@ int Stream::timedRead()
   do {
     c = read();
     if (c >= 0) return c;
+    // Check for millis() overflow
+    system_tick_t current = millis();
+    if (current < _startMillis)
+    {
+        _startMillis = current; // Handle overflow
+    }
   } while(millis() - _startMillis < _timeout);
   return -1;     // -1 indicates timeout
 }
