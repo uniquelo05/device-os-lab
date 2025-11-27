@@ -41,6 +41,11 @@ using namespace particle;
 //------------------------------------------------------------------------------------------
 
 void dtoa (double val, unsigned char prec, char *sout) {
+    if (!sout)
+    {
+        return; // Safety check for null pointer
+    }
+
     bool negative = val<0;
     if (negative) {
         val = -val;
