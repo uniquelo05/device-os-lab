@@ -68,6 +68,11 @@ size_t Buffer::toHex(char* out, size_t size) const {
 }
 
 Buffer Buffer::fromHex(const char* str, size_t len) {
+    if (!str || len == 0)
+    {
+        return Buffer(); // Invalid input
+    }
+
     Buffer buf;
     if (!buf.resize(len / 2)) {
         return Buffer();
