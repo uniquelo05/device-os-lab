@@ -40,6 +40,19 @@ Device OS is the operating system for Particle devices. It provides a robust and
 
 To get started with Device OS, follow the instructions below:
 
+### Prerequisites
+
+Before building Device OS, ensure you have:
+
+- **ARM GCC Toolchain**: For cross-compilation to ARM targets
+- **Make**: Build automation tool
+- **Git**: Version control system
+- **Python**: For build scripts (version 2.7 or 3.x)
+
+For detailed dependency information, see [Dependencies](docs/dependencies.md).
+
+### Building the Project
+
 1. Clone the repository:
    ```bash
    git clone https://github.com/uniquelo05/device-os-lab.git
