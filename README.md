@@ -70,6 +70,26 @@ For more details, refer to the [documentation](docs/gettingstarted.md).
 
 ## Code Examples
 
+### Memory Usage Monitoring
+
+To monitor memory usage in your application, you can use the following example:
+
+```cpp
+#include "application.h"
+
+void setup() {
+    Serial.begin(9600);
+}
+
+void loop() {
+    // Log free memory
+    Serial.printlnf("Free memory: %lu bytes", System.freeMemory());
+    delay(1000); // Log every second
+}
+```
+
+This example uses the `System.freeMemory()` API to log the amount of free memory available on the device. It is useful for debugging memory leaks or optimizing memory usage in your application.
+
 Check out the [Code Examples](docs/code_examples.md) for common use cases and best practices.
 
 ## Troubleshooting

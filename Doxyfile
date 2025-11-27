@@ -26,4 +26,5 @@ GENERATE_LATEX = NO
 INPUT = \
     user/applications/tinker \
     docs/adc_calibration.md \
-    ...
+    docs/code_examples.md \
+    docs/memory_usage.md

@@ -9,6 +9,7 @@ This document provides code examples for common use cases when working with Devi
 4. [Debugging Wi-Fi Signal Strength](#4-debugging-wi-fi-signal-strength)
 5. [Timer-based Operations](#5-timer-based-operations)
 6. [Error Handling Best Practices](#6-error-handling-best-practices)
+7. [Monitoring Memory Usage](#7-monitoring-memory-usage)
 
 ## 1. Logging Power Consumption
 
@@ -116,5 +117,23 @@ int safeSensorRead(int pin) {
     return value;
 }
 ```
+
+## 7. Monitoring Memory Usage
+
+```cpp
+#include "application.h"
+
+void setup() {
+    Serial.begin(9600);
+}
+
+void loop() {
+    // Log free memory
+    Serial.printlnf("Free memory: %lu bytes", System.freeMemory());
+    delay(1000); // Log every second
+}
+```
+
+This example demonstrates how to monitor memory usage using the `System.freeMemory()` API. It is useful for identifying memory leaks and optimizing memory usage in your application.
 
 For more examples, refer to the [API documentation](docs/api_reference.md).
