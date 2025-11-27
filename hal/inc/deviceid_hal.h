@@ -43,15 +43,11 @@ extern "C" {
 #endif
 
 /**
- * Fetches the unique ID for this device.
+ * @brief Retrieves the device ID.
  *
- * @param dest      The buffer to receive the device ID
- * @param destLen   The maximum length of the buffer. Can be 0.
- * @return          The number of bytes in the device ID. This is independent
- *                  of the buffer size.
- *
- * To find out the size of the device ID, call this method with
- * {@code destLen}==0.
+ * @param dest Pointer to store the device ID.
+ * @param destLen Length of the destination buffer.
+ * @return unsigned Length of the device ID.
  */
 unsigned hal_get_device_id(uint8_t* dest, unsigned destLen);
 

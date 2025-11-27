@@ -44,6 +44,12 @@ void calculateSum(int a, int b)
 - focus on the intent of the function/class - the view from the outside
 - implementation details can be given inline in the code itself.
 
+### Function Comments
+- Use `@brief` to provide a concise description of the function.
+- Document all parameters with `@param`.
+- Specify the return value with `@return`.
+- Use proper grammar and punctuation.
+
 ## classes
 - names using CamelCase
 - data members first and then any constructors

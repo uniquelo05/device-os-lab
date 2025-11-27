@@ -26,6 +26,14 @@ static hal_watchdog_info_t watchdog_info = {
     .state = HAL_WATCHDOG_STATE_DISABLED
 };
 
+/**
+ * @brief Configures the watchdog timer.
+ *
+ * @param instance Watchdog instance.
+ * @param config Pointer to the configuration structure.
+ * @param reserved Reserved for future use.
+ * @return int Status code (0 for success, negative for error).
+ */
 int hal_watchdog_set_config(hal_watchdog_instance_t instance, const hal_watchdog_config_t* config, void* reserved) {
     if (!config || config->timeout_ms == 0) {
         return -1; // Invalid configuration
