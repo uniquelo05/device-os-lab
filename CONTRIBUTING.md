@@ -40,6 +40,19 @@ feat: add support for new sensor module
 Closes #123
 ```
 
+## Pull Request Guidelines
+
+When submitting a pull request, please adhere to the following guidelines:
+
+- **Descriptive Title**: Use a clear and concise title that summarizes the changes.
+- **Detailed Description**: Provide a detailed description of the changes, including the problem being solved and the approach taken.
+- **Linked Issues**: Reference any related issues or pull requests using keywords like `Closes #123`.
+- **Testing**: Include details about how the changes were tested and any relevant test cases.
+- **Documentation**: Update relevant documentation to reflect the changes.
+- **Commit Messages**: Follow the commit message guidelines outlined above.
+
+By following these guidelines, you help ensure a smooth review process and maintain the quality of the codebase.
+
 ## Code Review Guidelines
 
 When reviewing pull requests, please consider:

@@ -51,3 +51,12 @@ Links to the Community, Docs, Other Issues, etc..
 - [ ] Run unit/integration/application tests on device
 - [ ] Added documentation
 - [ ] Added to CHANGELOG.md after merging (add links to docs and issues)
+
+### Pull Request Checklist
+
+- [ ] Descriptive title summarizing the changes
+- [ ] Detailed description of the problem and solution
+- [ ] Linked issues or pull requests (e.g., `Closes #123`)
+- [ ] Relevant test cases included
+- [ ] Documentation updated to reflect changes
+- [ ] Commit messages follow the guidelines in `CONTRIBUTING.md`

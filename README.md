@@ -98,7 +98,7 @@ If you encounter issues, refer to the [Troubleshooting Guide](docs/troubleshooti
 
 ## Contributing
 
-We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on how to contribute to this project.
+We welcome contributions to the Particle Device OS Firmware! Please read our [CONTRIBUTING.md](CONTRIBUTING.md) file for detailed guidelines on how to submit pull requests and contribute to the project.
 
 # Resources
 
