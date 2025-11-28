@@ -75,7 +75,15 @@ New firmware APIs should have an API test. These are found in the `user/tests/wi
 
 New functionality should also have a corresponding unit test. These are found in `user/tests/wiring/no_fixture` when they do not require any additional test fixture beyond the device itself. Tests requiring a hardware fixture are found in the varoius subdirecotires. If the hardware fixture you need is already present, then feel free to add more tests to that. When the hardware fixture is not present, simply create a new directory, following the pattern of the existing tests (and by copying application.cpp from an existing test.)
 
+## Reorganizing Test Cases
 
+To improve maintainability, the `test/` directory has been reorganized. Contributors should:
+
+1. Place unit tests in the `test/unit/` directory.
+2. Place integration tests in the `test/integration/` directory.
+3. Place performance tests in the `test/performance/` directory.
+
+Ensure that new test cases follow this structure and are properly documented.
 
 # Changes to Functions, Structures and Dynalib Tables
 
@@ -142,5 +150,3 @@ If you encounter build errors while contributing, refer to the [Troubleshooting 
 ## Scripts Cleanup
 
 The `scripts/` directory has been cleaned up to remove unused scripts. Contributors should ensure they are using the updated list of scripts.
-
-

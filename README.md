@@ -414,6 +414,16 @@ Refer to `docs/code_examples.md` for more details and common patterns for GPIO d
 - Added a watchdog timer usage guide to `docs/troubleshooting.md`.
 - Updated the `third_party/` directory structure for better clarity.
 
+## Test Case Organization
+
+The `test/` directory has been reorganized for better maintainability:
+
+- `test/unit/`: Contains unit tests.
+- `test/integration/`: Contains integration tests.
+- `test/performance/`: Contains performance tests.
+
+Refer to the `CONTRIBUTING.md` file for more details.
+
 ## Hardware Setup
 
 For detailed hardware setup instructions, refer to the [Hardware Setup Guide](docs/hardware.md).
