@@ -52,6 +52,21 @@ Should confirmable messages be sent synchronously?
 - application can choose to relax this, and then messages are sent in the background (e.g. transmission result is via a callback to the application)
 - application can further choose to relax the confirmable message, in which case it is sent just once and not resent
 
+## Retry Logic for Failed Network Requests
+
+### Implementation Details
+- Extend the `MessageChannel` interface to include:
+  - `send()`: Automatically maintain confirmable requests for retransmission.
+  - `receive()`: Handle retransmissions of unacknowledged messages.
+  - `process(system_tick_t now)`: Perform housekeeping tasks such as removing cached responses that are too old.
+
+### Example Usage
+```cpp
+MessageChannel channel;
+channel.send(request);
+channel.process(current_time);
+```
+
 
 
 

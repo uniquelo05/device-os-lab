@@ -114,6 +114,9 @@ public:
     spark::Vector<particle::NetworkInterfaceConfig> getConfigList() const;
 #endif // HAL_USE_SOCKET_HAL_POSIX
 
+    // Retry logic for network requests
+    bool sendWithRetry(const uint8_t* data, size_t size, unsigned retryCount = 3, unsigned retryDelayMs = 1000);
+
 private:
     network_interface_t iface_;
 };

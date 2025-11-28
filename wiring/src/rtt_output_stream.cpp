@@ -92,6 +92,24 @@ size_t RttOutputStream::write(const uint8_t* data, size_t size) {
     return written;
 }
 
+// Add retry logic for network requests
+size_t RttOutputStream::retryWrite(const uint8_t* data, size_t size) {
+    size_t written = 0;
+    unsigned retries = 0;
+    while (written < size) {
+        const unsigned n = SEGGER_RTT_WriteNoLock(0 /* BufferIndex */, data + written, size - written);
+        if (n > 0) {
+            written += n;
+        } else {
+            if (retries++ >= WRITE_RETRY_COUNT) {
+                break;
+            }
+            delay(WRITE_RETRY_DELAY);
+        }
+    }
+    return written;
+}
+
 } // particle
 
 #endif // Wiring_Rtt
