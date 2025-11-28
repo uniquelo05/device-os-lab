@@ -1,4 +1,3 @@
-
 // This contains all the global instances used by Wiring
 // This allows the wiring library to be used as a utility library for String, Stream, Print etc.. without
 // instantiating the globals.
@@ -22,6 +21,16 @@ hal_i2c_config_t defaultWireConfig(hal_i2c_interface_t i2c) {
 		.tx_buffer_size = i2c_buffer_size,
 		.flags = HAL_I2C_CONFIG_FLAG_FREEABLE
 	};
+
+	// Free dynamically allocated buffers to prevent memory leaks
+	if (config.rx_buffer) {
+		delete[] config.rx_buffer;
+		config.rx_buffer = nullptr;
+	}
+	if (config.tx_buffer) {
+		delete[] config.tx_buffer;
+		config.tx_buffer = nullptr;
+	}
 
 	return config;
 }
