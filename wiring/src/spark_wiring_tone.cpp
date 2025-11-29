@@ -29,6 +29,10 @@
 
 void tone(uint8_t pin, unsigned int frequency, unsigned long duration)
 {
+    if (frequency == 0)
+    {
+        return;
+    }
     if (pinAvailable(pin) && hal_pin_validate_function(pin, PF_TIMER)==PF_TIMER) {
         HAL_Tone_Start(pin, frequency, duration);
     }
