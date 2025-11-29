@@ -67,6 +67,16 @@ void USBMouse::end(void)
 
 void USBMouse::move(int16_t x, int16_t y, int8_t wheel)
 {
+    // Clamp values to valid ranges
+    if (x < INT16_MIN)
+        x = INT16_MIN;
+    if (x > INT16_MAX)
+        x = INT16_MAX;
+    if (y < INT16_MIN)
+        y = INT16_MIN;
+    if (y > INT16_MAX)
+        y = INT16_MAX;
+
     mouseReport.x = x;
     mouseReport.y = y;
     mouseReport.wheel = wheel;
