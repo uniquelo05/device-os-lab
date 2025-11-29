@@ -29,6 +29,10 @@ __attribute__((weak)) void str_reverse(char* buffer){
 //convert long to string
 __attribute__((weak)) char *ltoa(long N, char *str, int base)
 {
+    if (!str)
+    {
+        return NULL;
+    }
       int i = 2;
       long uarg;
       char *tail, *head = str, buf[BUFSIZE];
@@ -65,7 +69,11 @@ __attribute__((weak)) char *ltoa(long N, char *str, int base)
 
 //convert unsigned long to string
 __attribute__((weak)) char* ultoa(unsigned long a, char* buffer, int radix, char pad){
-	if(radix<2 || radix>36){
+    if (!buffer)
+    {
+        return NULL;
+    }
+        if(radix<2 || radix>36){
 		return NULL;
 	}
 	char* ptr=buffer;
@@ -95,7 +103,11 @@ __attribute__((weak)) char* ultoa(unsigned long a, char* buffer, int radix, char
 }
 
 __attribute__((weak)) char* itoa(int a, char* buffer, int radix){
-	if(a<0){
+    if (!buffer)
+    {
+        return NULL;
+    }
+        if(a<0){
 		*buffer = '-';
 		unsigned v = a==INT_MIN ? ((unsigned)INT_MAX+1) : -a;
 		ultoa((unsigned)v, buffer + 1, radix);
