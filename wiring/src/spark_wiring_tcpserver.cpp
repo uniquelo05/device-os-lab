@@ -129,6 +129,10 @@ size_t TCPServer::write(uint8_t b, system_tick_t timeout)
 
 size_t TCPServer::write(const uint8_t *buf, size_t size, system_tick_t timeout)
 {
+    if (!buf || size == 0)
+    {
+        return 0;
+    }
     _client.clearWriteError();
     size_t ret = _client.write(buf, size, timeout);
     setWriteError(_client.getWriteError());
@@ -142,6 +146,10 @@ size_t TCPServer::write(uint8_t b)
 
 size_t TCPServer::write(const uint8_t *buffer, size_t size)
 {
+    if (!buffer || size == 0)
+    {
+        return 0;
+    }
     return write(buffer, size, SPARK_WIRING_TCPCLIENT_DEFAULT_SEND_TIMEOUT);
 }
 
