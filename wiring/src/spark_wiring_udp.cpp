@@ -184,6 +184,10 @@ size_t UDP::write(uint8_t byte)
 
 size_t UDP::write(const uint8_t *buffer, size_t size)
 {
+    if (!buffer || size == 0)
+    {
+        return 0;
+    }
     size_t available = _buffer ? _buffer_size - _offset : 0;
     if (size>available)
         size = available;
@@ -233,6 +237,10 @@ int UDP::read()
 
 int UDP::read(unsigned char* buffer, size_t len)
 {
+    if (!buffer || len == 0)
+    {
+        return -1;
+    }
     int read = -1;
     if (available())
     {
