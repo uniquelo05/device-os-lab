@@ -59,7 +59,8 @@ public:
     }
 
     size_t readBytes(char* data, size_t size) override {
-        if (!stream_ || error() < 0) {
+        if (!data || size == 0 || !stream_ || error() < 0)
+        {
             return 0;
         }
         int r = ledger_read(stream_, data, size, nullptr);
@@ -80,7 +81,8 @@ public:
     }
 
     size_t write(const uint8_t* data, size_t size) override {
-        if (!stream_ || error() < 0) {
+        if (!data || size == 0 || !stream_ || error() < 0)
+        {
             return 0;
         }
         int r = ledger_write(stream_, (const char*)data, size, nullptr);
