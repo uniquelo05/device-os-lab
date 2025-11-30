@@ -110,6 +110,35 @@ if (!fetchUserList()) {
 
 By following these practices, you can ensure that user lists are displayed correctly and securely.
 
+### 7. Optimizing Database Queries
+
+To improve the performance of database queries, follow these best practices:
+
+1. **Use Indexes**:
+   - Ensure that frequently queried columns are indexed to speed up lookups.
+
+2. **Avoid N+1 Queries**:
+   - Fetch related data in a single query instead of multiple queries.
+
+3. **Paginate Results**:
+   - For large datasets, implement pagination to reduce the amount of data fetched at once.
+
+```cpp
+// Example of paginated query
+std::vector<User> fetchUsers(int page, int pageSize) {
+    int offset = (page - 1) * pageSize;
+    return db.query("SELECT * FROM users LIMIT ? OFFSET ?", pageSize, offset);
+}
+```
+
+4. **Optimize Joins**:
+   - Use proper join conditions and avoid unnecessary joins.
+
+5. **Cache Results**:
+   - Cache frequently accessed data to reduce database load.
+
+By following these practices, you can significantly improve the performance of your database queries.
+
 ## Security Checklist
 
 - [ ] No hardcoded credentials
