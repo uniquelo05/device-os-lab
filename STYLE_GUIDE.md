@@ -76,6 +76,40 @@ protected:
 };
 ```
 
+## Variable Naming Conventions
+
+To ensure consistency and readability, follow these conventions when naming variables:
+
+### General Guidelines
+- Use descriptive and meaningful names.
+- Avoid single-character names, except for loop counters (e.g., `i`, `j`).
+- Use camelCase for variables and functions (e.g., `userName`, `calculateSum`).
+- Use PascalCase for class names (e.g., `UserManager`, `DataProcessor`).
+- Use UPPER_SNAKE_CASE for constants (e.g., `MAX_CONNECTIONS`, `DEFAULT_TIMEOUT`).
+
+### Specific Rules
+- Prefix boolean variables with `is`, `has`, or `can` (e.g., `isActive`, `hasPermission`, `canExecute`).
+- Use singular names for single items (e.g., `user`, `item`) and plural names for collections (e.g., `users`, `items`).
+- Avoid abbreviations unless they are widely understood (e.g., `id` for identifier).
+
+### Examples
+
+**Good:**
+```cpp
+int userAge;
+bool isLoggedIn;
+std::vector<std::string> userNames;
+const int MAX_RETRIES = 5;
+```
+
+**Avoid:**
+```cpp
+int a;
+bool flag;
+std::vector<std::string> vec;
+const int maxRetries = 5;
+```
+
 ## Code Examples
 - Ensure all code examples are properly formatted and include necessary headers.
 - Follow the existing style for indentation and comments.
