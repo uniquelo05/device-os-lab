@@ -372,6 +372,7 @@ This feature introduces retry logic for reconnecting to the cloud in case of dis
 
 ### Usage Example
 
+
 ```cpp
 #include "system_cloud.h"
 
