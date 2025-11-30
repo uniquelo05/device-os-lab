@@ -68,6 +68,48 @@ For detailed dependency information, see [Dependencies](docs/dependencies.md).
 
 For more details, refer to the [documentation](docs/gettingstarted.md).
 
+## Installation Guide
+
+To set up the Device OS firmware, follow these steps:
+
+### Prerequisites
+- Ensure you have the following installed:
+  - [Git](https://git-scm.com/)
+  - [CMake](https://cmake.org/)
+  - [GNU Make](https://www.gnu.org/software/make/)
+  - [GCC Toolchain](https://gcc.gnu.org/)
+
+### Steps
+1. **Clone the Repository**:
+   ```bash
+   git clone https://github.com/particle-iot/device-os.git
+   cd device-os
+   ```
+
+2. **Install Dependencies**:
+   ```bash
+   ./install_dependencies.sh
+   ```
+
+3. **Build the Firmware**:
+   ```bash
+   make all
+   ```
+
+4. **Flash to Device**:
+   ```bash
+   make flash
+   ```
+
+5. **Verify Installation**:
+   - Connect your device and run:
+     ```bash
+     particle serial inspect
+     ```
+   - Ensure the firmware version matches the build.
+
+For more details, refer to the [API Reference](docs/api_reference.md).
+
 ## Code Examples
 
 ### Memory Usage Monitoring
