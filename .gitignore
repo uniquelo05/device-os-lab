@@ -85,3 +85,10 @@ logs/
 *.swo
 .*~
 
+# Build directories
+build/
+modules/
+bootloader/
+scripts/
+workbench/
+
