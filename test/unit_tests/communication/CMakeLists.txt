@@ -44,6 +44,7 @@ add_executable( ${target_name}
   coap_message_decoder.cpp
   firmware_update.cpp
   description.cpp
+  ${TEST_DIR}/communication/gsm0710muxer.cpp
 )
 
 # Set defines specific to target
