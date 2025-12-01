@@ -12,20 +12,25 @@ You may also delete this submission notes header if you'd like. Thank you for co
 
 ## Bug Report
 
-### Expected Behavior
+### Summary
+Provide a concise description of the bug.
 
+### Expected Behavior
 What should it do?
 
 ### Observed Behavior
-
 What did it actually do?
 
 ### Steps to Reproduce
+1. Step-by-step instructions to reproduce the issue.
+2. Include any relevant code snippets or configurations.
 
-How did you make it do that, and which system/user firmware versions were tested?
+### Environment
+- **Device OS Version**: (e.g., 3.1.0)
+- **Platform**: (e.g., Argon, Boron, Tracker)
+- **IDE or Toolchain**: (e.g., Particle Workbench, CLI, etc.)
 
 ### Test App
-
 ```c
 void setup() {
   // A minimal test case to reproduce the issue is super helpful!
@@ -36,9 +41,11 @@ void loop() {
 }
 ```
 
-### References
+### Logs or Screenshots
+Include any relevant logs or screenshots to help diagnose the issue.
 
-Links to the Community, Docs, Other Issues, etc..
+### References
+Link to any related issues, forum posts, or documentation.
 
 ---
 
