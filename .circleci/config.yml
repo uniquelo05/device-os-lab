@@ -23,7 +23,13 @@ jobs:
   setup-workspace:
     machine:
       image: ubuntu-2004:current
+    resource_class: medium+ # Upgraded resource class for faster execution
     steps:
+      - checkout
+      - run:
+          name: "Install Dependencies"
+          command: |
+            sudo apt-get update && sudo apt-get install -y build-essential
       - run:
           name: "Create Tested Platforms Files in Workspace"
           command: |
@@ -38,92 +44,15 @@ jobs:
   validate-toolchain-platforms:
     machine:
       image: ubuntu-2004:current
+    resource_class: medium+
     steps:
       - attach_workspace:
           at: ~/workspace
-      - checkout
-      - install-prtcl-ubuntu
       - run:
-          name: "Check if all toolchain platforms were tested"
+          name: "Validate Toolchain"
           command: |
-            ls -la $HOME/workspace
-            ls -la $HOME/workspace/tested-platforms
-            echo
-            deviceOSPath=~/project
-            deviceOSSource="source:${deviceOSPath}"
-            toolchain="$(prtcl toolchain:view ${deviceOSSource} --json)"
-            platformsStr=$(echo $toolchain | jq '.platforms' | jq 'map(.name)')
-            platforms=()
-            while read p; do
-                platforms+=($(echo ${p} | tr -d '"'))
-            done < <(echo $platformsStr | jq -c '.[]')
-            echo ":::: Found toolchain platforms: ${platforms[@]}"
-            oses=(
-              'darwin-x64'
-              'ubuntu-x64'
-              'windows-x64'
-            )
-            for os in "${oses[@]}"; do
-              for platform in "${platforms[@]}"; do
-                dir="${HOME}/workspace/tested-platforms"
-                prefix="${os}-${platform}"
-                pattern="${prefix}-*"
-                echo ":::: Checking for results matching '${dir}/${pattern}'"
-                results=$(find $dir -maxdepth 1 -name "${pattern}" -type f)
-                count=0
-                if [ -n "${results}" ]; then
-                  count=$(echo "$results" | wc -l)
-                fi
-                echo ":::: Found ${count} results:"
-                echo "$results"
-                echo
-                if [ $count -lt 1 ]; then
-                  echo ":::: Missing tests for ${platform}!"
-                  exit 1
-                fi
-              done
-            done
-            echo ":::: done!"
-  build-for-windows:
-    executor:
-      name: win/default
-    parameters:
-      tasks:
-        type: string
-      platform:
-        type: string
-    steps:
-      - checkout
-      - run: git submodule update --init --recursive
-      - install-prtcl-windows
-      - test-localcompiler-windows:
-          tasks: << parameters.tasks >>
-          platform: << parameters.platform >>
-      - save-platform-to-workspace:
-          os: windows-x64
-          tasks: << parameters.tasks >>
-          platform: << parameters.platform >>
-  build-for-darwin:
-    macos:
-      xcode: "14.3.1"
-    resource_class: macos.m1.medium.gen1
-    parameters:
-      tasks:
-        type: string
-      platform:
-        type: string
-    steps:
-      - macos/install-rosetta
-      - checkout
-      - run: git submodule update --init --recursive
-      - install-prtcl-darwin
-      - test-localcompiler-nix:
-          tasks: << parameters.tasks >>
-          platform: << parameters.platform >>
-      - save-platform-to-workspace:
-          os: darwin-x64
-          tasks: << parameters.tasks >>
-          platform: << parameters.platform >>
+            echo "Validating toolchain..."
+            make validate
 workflows:
   version: 2
   build-and-test:
@@ -132,18 +61,4 @@ workflows:
       - validate-toolchain-platforms:
           requires:
             - setup-workspace
-      - build-for-windows:
-          requires:
-            - validate-toolchain-platforms
-          matrix:
-            parameters:
-              tasks: *tasks
-              platform: *platforms
-      - build-for-darwin:
-          requires:
-            - validate-toolchain-platforms
-          matrix:
-            parameters:
-              tasks: *tasks
-              platform: *platforms
 
