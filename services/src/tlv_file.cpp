@@ -159,6 +159,11 @@ int TlvFile::add(uint16_t key, const uint8_t* value, uint16_t length) {
         return SYSTEM_ERROR_INVALID_STATE;
     }
 
+    if (!value && length > 0)
+    {
+        return SYSTEM_ERROR_INVALID_ARGUMENT;
+    }
+
     FileFooter footer;
     int ret = readFooter(footer);
     if (ret < 0) {
@@ -416,6 +421,10 @@ ssize_t TlvFile::read(uint8_t* buf, size_t length) {
 }
 
 ssize_t TlvFile::write(const uint8_t* buf, size_t length) {
+    if (!buf || length == 0)
+    {
+        return SYSTEM_ERROR_INVALID_ARGUMENT;
+    }
     ssize_t r = lfs_file_write(lfs(), &file_, buf, length);
     if (r < 0) {
         /* Write operation failed. sync() should discard this cached write */
