@@ -58,6 +58,26 @@ When submitting a pull request, please adhere to the following guidelines:
 
 By following these guidelines, you help ensure a smooth review process and maintain the quality of the codebase.
 
+## New Pull Request Guidelines
+
+To ensure a smooth review process, please follow these updated guidelines when submitting a pull request:
+
+1. **Descriptive Title**: Use a clear and concise title that summarizes the purpose of the pull request.
+2. **Detailed Description**: Provide a detailed description of the changes, including:
+   - The problem being solved or feature being added.
+   - Any relevant background information.
+   - Steps to test the changes.
+3. **Linked Issues**: Reference any related issues or tasks using keywords like `Fixes #123` or `Closes #456`.
+4. **Code Quality**: Ensure your code adheres to the [Style Guide](STYLE_GUIDE.md) and includes:
+   - Proper formatting and naming conventions.
+   - Comments for complex logic.
+5. **Tests**: Include unit tests for new features or bug fixes. Ensure all tests pass locally before submission.
+6. **Documentation**: Update relevant documentation for any user-facing changes.
+7. **Small Commits**: Break down large changes into smaller, meaningful commits with clear messages.
+8. **Draft PRs**: Use draft pull requests for incomplete work to gather early feedback.
+
+By following these guidelines, you help maintain the quality and consistency of the codebase while streamlining the review process.
+
 ## Code Review Guidelines
 
 When reviewing pull requests, please consider:
