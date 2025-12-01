@@ -4,6 +4,14 @@ It's presently just an outline and will be fleshed out over time.
 Note that it will be easy to find violations of these guidelines in the existing codebase.
 Over time, these will be rectified as automated checks for style consistency are introduced.
 
+## Introduction
+
+This section provides an overview of the purpose and scope of the style guide. It explains the importance of maintaining consistent coding standards across the codebase.
+
+## Code Structure
+
+This section outlines the recommended structure for organizing code files, including headers, source files, and directory layout.
+
 ## Formatting
 
 - Indentation at 4 spaces.
