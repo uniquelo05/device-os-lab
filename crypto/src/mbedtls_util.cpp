@@ -115,6 +115,16 @@ int mbedtls_x509_crt_pem_to_der(const char* pem_crt, size_t pem_len, uint8_t** d
     return ret;
 }
 
+// Added helper function for memory allocation with error handling
+static uint8_t* allocate_memory(size_t size) {
+    uint8_t* memory = (uint8_t*)calloc(1, size);
+    if (!memory) {
+        // Handle memory allocation failure
+        return NULL;
+    }
+    return memory;
+}
+
 int mbedtls_pk_pem_to_der(const char* pem_key, size_t pem_len, uint8_t** der_key, size_t* der_len)
 {
     mbedtls_pk_context pkctx;
@@ -128,7 +138,7 @@ int mbedtls_pk_pem_to_der(const char* pem_key, size_t pem_len, uint8_t** der_key
         ret = -1;
         size_t len = pem_len * 3 / 4;
         if (len > 0) {
-            uint8_t* der = (uint8_t*)calloc(1, len);
+            uint8_t* der = allocate_memory(len);
             if (der) {
                 ret = mbedtls_pk_write_key_der(&pkctx, der, len);
                 if (ret > 0) {
@@ -139,7 +149,6 @@ int mbedtls_pk_pem_to_der(const char* pem_key, size_t pem_len, uint8_t** der_key
                     *der_len = ret;
                     ret = 0;
                 } else {
-                    ret = -1;
                     free(der);
                 }
             }
@@ -171,13 +180,18 @@ int mbedtls_x509_read_length(const uint8_t* der, size_t length, int concatenated
     return total_len;
 }
 
-int mbedtls_to_system_error(int error)
-{
+// Refactored mbedtls_to_system_error to handle more specific error codes
+int mbedtls_to_system_error(int error) {
     switch (error) {
-    case 0:
-        return SYSTEM_ERROR_NONE;
-    // TODO
-    default:
-        return SYSTEM_ERROR_CRYPTO;
+        case 0:
+            return SYSTEM_ERROR_NONE;
+        case MBEDTLS_ERR_X509_CERT_VERIFY_FAILED:
+            return SYSTEM_ERROR_CERT_VERIFY_FAILED;
+        case MBEDTLS_ERR_PK_KEY_INVALID_FORMAT:
+            return SYSTEM_ERROR_KEY_INVALID_FORMAT;
+        case MBEDTLS_ERR_ASN1_OUT_OF_DATA:
+            return SYSTEM_ERROR_ASN1_OUT_OF_DATA;
+        default:
+            return SYSTEM_ERROR_CRYPTO;
     }
 }
