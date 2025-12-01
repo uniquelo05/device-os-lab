@@ -80,17 +80,20 @@ By following these guidelines, you help maintain the quality and consistency of 
 
 ## Code Review Guidelines
 
-When reviewing pull requests, please consider:
+To ensure high-quality contributions, please follow these code review guidelines:
 
-- **Functionality**: Does the code work as intended?
-- **Style**: Does it follow the project's style guide?
-- **Tests**: Are there adequate tests for the changes?
-- **Documentation**: Are the changes properly documented?
-- **Performance**: Could there be any performance implications?
-- **Security**: Are there any security concerns?
+1. **Clarity**: Ensure the code is easy to read and understand. Avoid overly complex logic.
+2. **Consistency**: Follow the project's [Style Guide](STYLE_GUIDE.md) for formatting, naming conventions, and structure.
+3. **Functionality**: Verify that the code works as intended and does not introduce new bugs.
+4. **Testing**: Check that the code includes appropriate unit tests and that all tests pass.
+5. **Documentation**: Ensure that the code is well-documented, including comments for complex logic and updates to relevant documentation files.
+6. **Performance**: Review the code for potential performance issues, such as inefficient algorithms or unnecessary memory usage.
+7. **Security**: Identify and address any potential security vulnerabilities.
+8. **Backward Compatibility**: Ensure that the changes do not break existing functionality or APIs.
+9. **Commit Messages**: Verify that commit messages are clear, concise, and follow the commit message guidelines.
+10. **Feedback**: Provide constructive feedback and suggest improvements where necessary.
 
-Be constructive and respectful in your feedback. 
-
+By adhering to these guidelines, we can maintain a high standard of quality and ensure a smooth review process.
 
 # Tests and Documentation
 
