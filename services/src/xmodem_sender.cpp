@@ -96,6 +96,10 @@ XmodemSender::~XmodemSender() {
 }
 
 int XmodemSender::init(Stream* dest, InputStream* src, size_t size) {
+    if (!dest || !src)
+    {
+        return SYSTEM_ERROR_INVALID_ARGUMENT;
+    }
     buf_.reset(new(std::nothrow) char[BUFFER_SIZE]);
     CHECK_TRUE(buf_, SYSTEM_ERROR_NO_MEMORY);
     srcStrm_ = src;
