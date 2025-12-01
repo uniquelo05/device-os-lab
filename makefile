@@ -34,4 +34,9 @@ clean: clean_deps
 	$(VERBOSE)$(RMDIR) $(BUILD_PATH_BASE)
 
 
-.PHONY: all docs
+# New build target
+new_target:
+	@echo "Building new target..."
+	# Add commands to build the new target here
+
+.PHONY: all docs new_target
