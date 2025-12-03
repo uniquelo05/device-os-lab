@@ -72,6 +72,22 @@ int hal_watchdog_refresh(hal_watchdog_instance_t instance, void* reserved) {
     return 0;
 }
 
+int hal_watchdog_pause(hal_watchdog_instance_t instance, void* reserved) {
+    if (watchdog_info.state != HAL_WATCHDOG_STATE_STARTED) {
+        return -1; // Watchdog not started
+    }
+    watchdog_info.state = HAL_WATCHDOG_STATE_PAUSED;
+    return 0;
+}
+
+int hal_watchdog_resume(hal_watchdog_instance_t instance, void* reserved) {
+    if (watchdog_info.state != HAL_WATCHDOG_STATE_PAUSED) {
+        return -1; // Watchdog not paused
+    }
+    watchdog_info.state = HAL_WATCHDOG_STATE_STARTED;
+    return 0;
+}
+
 int hal_watchdog_get_info(hal_watchdog_instance_t instance, hal_watchdog_info_t* info, void* reserved) {
     if (!info) {
         return -1; // Invalid argument
