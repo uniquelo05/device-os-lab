@@ -1,0 +1,16 @@
+// logging.cpp
+// Thêm các thông báo log chi tiết hơn
+#include "logging.h"
+#include <iostream>
+
+void logDebug(const std::string& message) {
+    std::cout << "[DEBUG]: " << message << std::endl;
+}
+
+void logInfo(const std::string& message) {
+    std::cout << "[INFO]: " << message << std::endl;
+}
+
+void logError(const std::string& message) {
+    std::cerr << "[ERROR]: " << message << std::endl;
+}
