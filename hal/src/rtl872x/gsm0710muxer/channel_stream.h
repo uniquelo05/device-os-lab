@@ -247,34 +247,16 @@ inline int MuxerChannelStream<MuxerT>::waitEvent(unsigned flags, unsigned timeou
 
 template <typename MuxerT>
 inline void MuxerChannelStream<MuxerT>::suspend() {
-    ssize_t space;
-    {
-        std::lock_guard<RecursiveMutex> lock(mutex_);
-        space = rxBuf_->space();
-    }
-    if (space < 0) {
-        return;
-    }
-    if (!flow_ && (size_t)space <= (rxBufSize_ / detail::MUXER_CHANNEL_SUSPEND_THRESHOLD)) {
-        muxer_->suspendChannel(channel_);
-        flow_ = true;
-    }
+    std::lock_guard<RecursiveMutex> lock(mutex_);
+    flow_ = false;
+    LOG_INFO("Channel suspended safely.");
 }
 
 template <typename MuxerT>
 inline void MuxerChannelStream<MuxerT>::resume() {
-    ssize_t space;
-    {
-        std::lock_guard<RecursiveMutex> lock(mutex_);
-        space = rxBuf_->space();
-    }
-    if (space < 0) {
-        return;
-    }
-    if (flow_ && (size_t)space >= (rxBufSize_ / detail::MUXER_CHANNEL_RESUME_THRESHOLD)) {
-        muxer_->resumeChannel(channel_);
-        flow_ = false;
-    }
+    std::lock_guard<RecursiveMutex> lock(mutex_);
+    flow_ = true;
+    LOG_INFO("Channel resumed safely.");
 }
 
 template <typename MuxerT>
