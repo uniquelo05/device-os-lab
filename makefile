@@ -20,8 +20,24 @@ msg = Building firmware for $(PRODUCT_DESC), platform ID: $(PLATFORM_ID)$(msg_ex
 
 $(info $(msg))
 
-all: make_deps
+# Modularized makefile structure
+SUBDIRS := communication hal platform services wiring bootloader main
 
+.PHONY: all clean $(SUBDIRS)
+
+all: $(SUBDIRS)
+	@echo "Build completed for all modules."
+
+$(SUBDIRS):
+	$(MAKE) -C $@
+
+clean:
+	@for dir in $(SUBDIRS); do \
+		$(MAKE) -C $$dir clean; \
+	done
+	$(VERBOSE)$(RMDIR) $(BUILD_PATH_BASE)
+
+# Documentation generation
 docs:
 	@echo "Generating documentation..."
 	doxygen Doxyfile
@@ -29,10 +45,6 @@ docs:
 include $(COMMON_BUILD)/common-tools.mk
 include $(COMMON_BUILD)/recurse.mk
 include $(COMMON_BUILD)/verbose.mk
-
-clean: clean_deps
-	$(VERBOSE)$(RMDIR) $(BUILD_PATH_BASE)
-
 
 # New build target
 new_target:
