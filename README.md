@@ -553,39 +553,27 @@ Pre-commit hooks have been added to enforce code formatting. Run `scripts/setup_
 
 ## Build Instructions
 
-To build the Device OS firmware, follow these steps:
+To build the project, follow these steps:
 
-1. **Clone the Repository**:
-   ```bash
-   git clone https://github.com/uniquelo05/device-os-lab.git
-   cd device-os-lab
-   ```
+1. **Install Dependencies**:
+   - Ensure you have the required tools installed, such as `make`, `gcc`, and other dependencies listed in `CONTRIBUTING.md`.
 
-2. **Install Dependencies**:
-   Ensure the following tools are installed on your system:
-   - ARM GCC Toolchain
-   - Make
-   - Python (2.7 or 3.x)
-   - Git
+2. **Build the Project**:
+   - Run the following command to build all modules:
+     ```bash
+     make all
+     ```
 
-   For detailed dependency installation instructions, refer to the [Dependencies Documentation](docs/dependencies.md).
+3. **Clean the Build**:
+   - To clean the build artifacts, use:
+     ```bash
+     make clean
+     ```
 
-3. **Build the Firmware**:
-   Run the following command to build the firmware:
-   ```bash
-   make all
-   ```
+4. **Run Tests**:
+   - To run the tests, execute:
+     ```bash
+     make test
+     ```
 
-4. **Flash the Firmware**:
-   To flash the firmware to your device, use the following command:
-   ```bash
-   make flash
-   ```
-
-5. **Run Tests** (Optional):
-   To ensure the build is successful, run the test suite:
-   ```bash
-   make test
-   ```
-
-For more information, refer to the [Getting Started Guide](docs/gettingstarted.md).
+For more detailed instructions, refer to the documentation in the `docs/` folder.
