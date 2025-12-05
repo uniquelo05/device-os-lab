@@ -66,4 +66,7 @@ dynalib:
 all: dynalib
 	@echo "Dynamic library for services built successfully."
 
+# Add test_crypto.cpp to the test build process
+TEST_SOURCES += test/test_crypto.cpp
+
 .PHONY: all docs new_target
