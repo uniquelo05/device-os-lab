@@ -7,6 +7,9 @@
 
 #include "communication.h"
 #include <iostream>
+#include <cstring>
+
+const size_t MAX_BUFFER_SIZE = 1024;
 
 /**
  * @brief Initializes the communication module.
@@ -28,8 +31,15 @@ int communication_send(const char* data, size_t length) {
         return -1;
     }
 
+    if (length > MAX_BUFFER_SIZE) {
+        std::cerr << "Error: Data length exceeds maximum buffer size." << std::endl;
+        return -1;
+    }
+
     // Simulate sending data
-    std::cout << "Sending data: " << std::string(data, length) << std::endl;
+    char buffer[MAX_BUFFER_SIZE];
+    std::memcpy(buffer, data, length);
+    std::cout << "Sending data: " << std::string(buffer, length) << std::endl;
 
     return 0;
 }
