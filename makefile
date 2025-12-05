@@ -72,6 +72,9 @@ TEST_SOURCES += test/test_crypto.cpp
 # Add test_hal.cpp to the test build process
 TEST_SOURCES += test/test_hal.cpp
 
+# Add test_services.cpp to the test build process
+TEST_SOURCES += test/test_services.cpp
+
 # Include modularized makefiles
 include common.mk
 include subdirs.mk
