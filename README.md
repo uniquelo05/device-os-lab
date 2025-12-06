@@ -32,6 +32,11 @@ Device OS is the operating system for Particle devices. It provides a robust and
 - Allows users to define and apply custom LED blink patterns.
 - Useful for signaling device states or events.
 
+
+### Network Connectivity Check
+- Adds a function to check network connectivity at system startup.
+- Logs the result of the network check for diagnostics.
+
 ### Improved Network State Transitions
 - Enhances the reliability of network connectivity.
 - Handles state transitions more robustly to ensure seamless operation.
