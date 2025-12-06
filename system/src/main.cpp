@@ -38,6 +38,18 @@
 #include "system_mode.h"
 #include "system_task.h"
 #include "system_network.h"
+#include "logging.h"
+// ...existing code...
+
+int main() {
+    logInfo("System startup");
+    // ...existing code...
+    logDebug("System running in debug mode");
+    // ...existing code...
+    logError("System encountered an error");
+    // ...existing code...
+    return 0;
+}
 #include "system_network_internal.h"
 #include "system_cloud_internal.h"
 #include "system_cloud_connection.h"

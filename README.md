@@ -22,6 +22,10 @@ This is the main source code repository for the Particle firmware libraries.
 
 Device OS is the operating system for Particle devices. It provides a robust and secure foundation for IoT applications.
 
+
+### System Logger Logging
+- Adds logging feature to the system logger for debug, info, and error messages.
+
 ## New Features
 
 
