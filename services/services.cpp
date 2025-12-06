@@ -2,6 +2,8 @@
 #include "services-dynalib/services_dynalib.h"
 #include <mutex>
 
+
+// Mutex for thread-safe service operations
 std::mutex service_mutex;
 
 void Service::initialize() {
